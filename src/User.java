@@ -2,6 +2,7 @@ abstract class User {
     private String name;
     private String login;
     private String password;
+    private String phoneNumber;
 
     public String getName() {
         return this.name;
@@ -25,5 +26,13 @@ abstract class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }
