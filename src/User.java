@@ -3,6 +3,7 @@ abstract class User {
     private String login;
     private String password;
     private String phoneNumber;
+    private boolean isLoggedIn;
 
     public String getName() {
         return this.name;
@@ -34,5 +35,13 @@ abstract class User {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public boolean isLoggedIn() {
+        return isLoggedIn;
+    }
+
+    public void setLoggedIn(boolean loggedIn) {
+        isLoggedIn = loggedIn;
     }
 }

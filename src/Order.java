@@ -9,7 +9,6 @@ public class Order {
     private boolean isConfirmed = false;
     private float price = 0;
 
-
     public int getOrderID() {
         return orderID;
     }

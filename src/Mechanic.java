@@ -1,2 +1,3 @@
-public class Mechanic {
+public class Mechanic extends User {
+
 }
