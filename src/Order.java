@@ -5,9 +5,19 @@ public class Order {
     private Customer customer;
     private Mechanic mechanic;
     private String description;
-    private LocalDate date;
+    private LocalDate date = LocalDate.now();
     private boolean isConfirmed = false;
     private float price = 0;
+
+    public Order(){}
+
+    public Order(int orderID, Customer customer, Mechanic mechanic, String description){
+        this.orderID = orderID;
+        this.customer = customer;
+        this.mechanic = mechanic;
+        this.description = description;
+    }
+
 
     public int getOrderID() {
         return orderID;
