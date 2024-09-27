@@ -1,9 +1,9 @@
 abstract class User {
+    private int id;
     private String name;
     private String login;
     private String password;
     private String phoneNumber;
-    private boolean isLoggedIn;
 
     public String getName() {
         return this.name;
@@ -37,11 +37,12 @@ abstract class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public boolean isLoggedIn() {
-        return isLoggedIn;
+
+    public int getId() {
+        return id;
     }
 
-    public void setLoggedIn(boolean loggedIn) {
-        isLoggedIn = loggedIn;
+    public void setId(int id) {
+        this.id = id;
     }
 }

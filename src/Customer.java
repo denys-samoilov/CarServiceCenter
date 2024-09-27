@@ -1,7 +1,8 @@
 public class Customer extends User{
 
-    public Customer(String name, String login, String password, String phoneNumber, String car)
+    public Customer(int id, String name, String login, String password, String phoneNumber, String car)
     {
+        this.setId(id);
         this.setName(name);
         this.setLogin(login);
         this.setPassword(password);
