@@ -32,8 +32,14 @@ public class Main {
                 }
 
                 case 3: {
-                    MakeOrder(orderArrayList, customerArrayList.get(loggedID), mechanicArrayList, loggedID);
+                    if(loggedID == -1)
+                    {
+                        System.out.println("Увійдіть в обліковий запис.");
+                    }
+                    else MakeOrder(orderArrayList, customerArrayList.get(loggedID), mechanicArrayList);
                 }
+
+                default: {System.out.println("Введіть коректне значення");}
             }
         }
     }
@@ -74,15 +80,8 @@ public class Main {
         customerArrayList.add(customer);
     }
 
-    public static void MakeOrder(ArrayList<Order> orderArrayList, Customer customer, ArrayList<Mechanic> mechanicArrayList, int loggedID)
+    public static void MakeOrder(ArrayList<Order> orderArrayList, Customer customer, ArrayList<Mechanic> mechanicArrayList)
     {
-
-        if(loggedID == -1)
-        {
-            System.out.println("Увійдіть в обліковий запис.");
-            return;
-        }
-
         Scanner scanner = new Scanner(System.in);
 
         int id = orderArrayList.size();
