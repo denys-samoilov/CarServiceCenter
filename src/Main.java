@@ -5,50 +5,70 @@ import java.util.Scanner;
 public class Main {
     public static void main (String[] args) {
 
-
         Scanner scanner = new Scanner(System.in);
 
         int loggedID = -1;
 
+
+        ArrayList<User> userArrayList = new ArrayList<User>();
         ArrayList <Customer> customerArrayList = new ArrayList <Customer>();
         ArrayList <Order> orderArrayList = new ArrayList<Order>();
         ArrayList<Mechanic> mechanicArrayList = new ArrayList<Mechanic>();
 
-        Mechanic mechanic = new Mechanic("Сергій", "mechanic123", "qwerty123", "+380952278423");
+        Mechanic mechanic = new Mechanic(0,"Сергій", "mechanic123", "qwerty123", "+380952278423");
         mechanicArrayList.add(mechanic);
+        userArrayList.add(mechanic);
 
-        for(int k = 1; k!=0;)
+        while(true)
         {
+            int k;
             System.out.println("1 - зареєструватись \n2 - увійти \n3 - зробити замовлення \n0 - вийти");
+
             k = scanner.nextInt();
             switch (k)
             {
                 case 1: {
-                    RegisterUser(customerArrayList); break;
+                    RegisterUser(userArrayList, customerArrayList); break;
                 }
 
                 case 2: {
-                    loggedID = LoginUser(customerArrayList); break;
+                    loggedID = LoginUser(customerArrayList);
+                    System.out.println(loggedID); break;
                 }
 
                 case 3: {
-                    if(loggedID == -1)
+                    Customer currentCustomer = null;
+
+                    if(loggedID!=-1)
+                    {
+                        for(int i = 0; i<customerArrayList.size();i++)
+                        {
+                            if(customerArrayList.get(i).getId() == loggedID)
+                                currentCustomer = customerArrayList.get(i);
+                        }
+                    }
+
+                    if(currentCustomer == null)
                     {
                         System.out.println("Увійдіть в обліковий запис.");
                     }
-                    else MakeOrder(orderArrayList, customerArrayList.get(loggedID), mechanicArrayList);
+                    else MakeOrder(orderArrayList, currentCustomer, mechanicArrayList);
+
+                    break;
                 }
+
+                case 0: {System.out.println("Виходимо..."); return;}
 
                 default: {System.out.println("Введіть коректне значення");}
             }
         }
     }
 
-    public static void RegisterUser(ArrayList<Customer> customerArrayList)
+    public static void RegisterUser(ArrayList<User> userArrayList, ArrayList<Customer> customerArrayList)
     {
         Scanner scanner = new Scanner(System.in);
 
-        int id = customerArrayList.size();
+        int id = userArrayList.size();
 
         System.out.print("Введіть ім'я: ");
         String name = scanner.nextLine();
@@ -62,22 +82,39 @@ public class Main {
         System.out.print("Введіть номер телефону: +38");
         String phone = "+38" + scanner.nextLine();
 
-        System.out.print("Введіть назву свого автомобіля: ");
-        String car = scanner.nextLine();
+
+        System.out.println("Введіть індекс бренду свого автомобіля: ");
+        for(int i = 0; i<Car.Brand.values().length;i++)
+        {
+            System.out.println(i+1 + " " + Car.Brand.values()[i]);
+        }
+        int carBrandId = scanner.nextInt()-1;
+        scanner.nextLine();
+        System.out.print("Введіть серію автомобіля: ");
+        String carSeries = scanner.nextLine();
+
+        System.out.print("Введіть рік автомобіля: ");
+        int carYear = scanner.nextInt();
+
+        Car car = new Car(Car.Brand.values()[carBrandId], carSeries, carYear);
+
 
         Customer customer = new Customer(id, name, login, password, phone, car);
 
-        for(int i = 0; i < customerArrayList.size(); i++)
+        for(int i = 0; i < userArrayList.size(); i++)
         {
-            String arrayListLogin = customerArrayList.get(i).getLogin();
+            String arrayListLogin = userArrayList.get(i).getLogin();
             if(arrayListLogin.equals(login))
             {
                 System.out.println("Користувач з даним логіном вже існоує");
                 return;
             }
         }
-
+        userArrayList.add(customer);
         customerArrayList.add(customer);
+
+        System.out.print("Вітаємо, " + name + "! \nВаш автомобіль:" + car.getBrand() + " " + car.getSeries() + " " + car.getYear() + "\n\n");
+
     }
 
     public static void MakeOrder(ArrayList<Order> orderArrayList, Customer customer, ArrayList<Mechanic> mechanicArrayList)
@@ -93,10 +130,10 @@ public class Main {
 
         for(int i = 0; i< mechanicArrayList.size(); i++)
         {
-            System.out.println(i + " -> " + mechanicArrayList.get(i).getName());
+            System.out.println(i+1 + " -> " + mechanicArrayList.get(i).getName());
         }
 
-        int mechanicIndex = scanner.nextInt();
+        int mechanicIndex = scanner.nextInt()-1;
 
         Order order = new Order(id, customer, mechanicArrayList.get(mechanicIndex), description);
 
@@ -118,9 +155,13 @@ public class Main {
         System.out.println("Логін замовника: " + customer.getLogin());
         System.out.println("Ім'я замовника: " + customer.getName());
         System.out.println("Номер телефону замовника: " + customer.getPhoneNumber());
-        System.out.println("Машина замовника: " + customer.getCar());
+
+        Car car = customer.getCar();
+
+        System.out.println("Машина замовника: " + car.getBrand() + " " + car.getSeries() + " " + car.getYear());
         System.out.println("Ім'я механіка: " + mechanic.getName());
         System.out.println("Номер телефону механіка: " + mechanic.getPhoneNumber());
+
         System.out.println("Опис замовлення: " + description);
         System.out.println("Дата замовлення: " + date);
         System.out.println("Чи підтверджено замовлення: " + isConfirmed);
@@ -151,7 +192,7 @@ public class Main {
             arrayListPassword = userArrayList.get(i).getPassword();
             if(arrayListLogin.equals(inputLogin) && arrayListPassword.equals(inputPassword))
             {
-                System.out.println("Вітаємо, " + userArrayList.get(i).getName());
+                System.out.println("Вітаємо, " + userArrayList.get(i).getName() + "! Ваш ID: " + arrayListId);
                 return arrayListId;
             }
         }

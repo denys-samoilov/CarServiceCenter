@@ -45,4 +45,18 @@ abstract class User {
     public void setId(int id) {
         this.id = id;
     }
+
+    public User()
+    {
+
+    }
+
+    public User(int id, String name, String login, String password, String phoneNumber)
+    {
+        this.setId(id);
+        this.setName(name);
+        this.setLogin(login);
+        this.setPassword(password);
+        this.setPhoneNumber(phoneNumber);
+    }
 }
