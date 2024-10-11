@@ -144,31 +144,7 @@ public class Main {
 
     public  static void OrderOutput(int id, ArrayList<Order> orderArrayList)
     {
-        Customer customer = orderArrayList.get(id).getCustomer();
-        Mechanic mechanic = orderArrayList.get(id).getMechanic();
-        String description = orderArrayList.get(id).getDescription();
-        LocalDate date = orderArrayList.get(id).getDate();
-        boolean isConfirmed = orderArrayList.get(id).isConfirmed();
-        float price = orderArrayList.get(id).getPrice();
-
-        System.out.println("ID замовлення: " + id);
-        System.out.println("Логін замовника: " + customer.getLogin());
-        System.out.println("Ім'я замовника: " + customer.getName());
-        System.out.println("Номер телефону замовника: " + customer.getPhoneNumber());
-
-        Car car = customer.getCar();
-
-        System.out.println("Машина замовника: " + car.getBrand() + " " + car.getSeries() + " " + car.getYear());
-        System.out.println("Ім'я механіка: " + mechanic.getName());
-        System.out.println("Номер телефону механіка: " + mechanic.getPhoneNumber());
-
-        System.out.println("Опис замовлення: " + description);
-        System.out.println("Дата замовлення: " + date);
-        System.out.println("Чи підтверджено замовлення: " + isConfirmed);
-        System.out.println("Ціна замовлення: " + price + "\n");
-
-
-
+        System.out.println(orderArrayList.get(id));
     }
 
     public static int LoginUser(ArrayList<Customer> userArrayList)

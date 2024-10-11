@@ -34,7 +34,7 @@ public class Car {
     }
 
     public enum Brand{
-        Volkswagen, BMW, Opel, Mercedes, Honda, Toyota, Nissan, Subaru
+        Volkswagen, BMW, Opel, Mercedes, Honda, Toyota, Nissan, Subaru, Chevrolet, Ford, Dodge
     }
 
     private Brand brand;

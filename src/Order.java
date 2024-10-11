@@ -75,4 +75,20 @@ public class Order {
     public void setPrice(float price){
         this.price = price;
     }
+    @Override
+    public String toString() {
+        Car car = customer.getCar();
+        var toString =  "ID замовлення: " + orderID + "\n" +
+               "Логін замовника: " + customer.getLogin() + "\n" +
+               "Ім'я замовника: " + customer.getName() + "\n" +
+               "Номер телефону замовника: " + customer.getPhoneNumber() + "\n" +
+               "Машина замовника: " + car.getBrand() + " " + car.getSeries() + " " + car.getYear() + "\n" +
+               "Ім'я механіка: " + mechanic.getName() + "\n" +
+               "Номер телефону механіка: " + mechanic.getPhoneNumber() + "\n" +
+               "Опис замовлення: " + description + "\n" +
+               "Дата замовлення: " + date + "\n" +
+               "Чи підтверджено замовлення: " + isConfirmed + "\n" +
+               "Ціна замовлення: " + price + "\n";
+        return toString;
+}
 }
