@@ -33,7 +33,7 @@ public class Main {
 
                 case 2: {
                     loggedID = LoginUser(customerArrayList);
-                    System.out.println(loggedID); break;
+                    break;
                 }
 
                 case 3: {
